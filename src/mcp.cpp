@@ -44,3 +44,37 @@ byte mcp::readGPIO(byte port) {
 void mcp::writeGPIO(byte port, byte value) {
     mcu_write(port, value);
 }
+
+
+
+void mcp::writePin(uint8_t pin, bool value) {
+    uint8_t port;
+    if(pin < 8) {
+        port = GPIOA;
+    } else {
+        port = GPIOB;
+        pin -= 8;
+    }
+
+    byte current = readGPIO(port);
+    if(value) {
+        current |= (1 << pin);
+    } else {
+        current &= ~(1 << pin);
+    }
+
+    writeGPIO(port, current);
+}
+
+bool mcp::readPin(uint8_t pin) {
+    uint8_t port;
+    if(pin < 8) {
+        port = GPIOA;
+    } else {
+        port = GPIOB;
+        pin -= 8;
+    }
+
+    byte current = readGPIO(port);
+    return (current >> pin) & 1;
+}
