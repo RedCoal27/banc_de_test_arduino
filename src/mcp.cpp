@@ -48,6 +48,7 @@ void mcp::writeGPIO(byte port, byte value) {
 
 
 void mcp::writePin(uint8_t pin, bool value) {
+    pin = pin % 16;
     uint8_t port;
     if(pin < 8) {
         port = GPIOA;
@@ -67,6 +68,7 @@ void mcp::writePin(uint8_t pin, bool value) {
 }
 
 bool mcp::readPin(uint8_t pin) {
+    pin = pin % 16;
     uint8_t port;
     if(pin < 8) {
         port = GPIOA;
