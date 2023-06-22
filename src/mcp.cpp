@@ -48,9 +48,12 @@ void mcp::writeGPIO(byte port, byte value) {
 
 
 void mcp::writePin(uint8_t pin, bool value) {
+    //on s'assure que le pin est entre 0 et 15 (on retire l'information du mcp)
     pin = pin % 16;
     uint8_t port;
-    if(pin < 8) {
+    
+    //si le 4e bit est à 1, on est sur le port B
+    if(pin & 8) {
         port = GPIOA;
     } else {
         port = GPIOB;
@@ -70,7 +73,8 @@ void mcp::writePin(uint8_t pin, bool value) {
 bool mcp::readPin(uint8_t pin) {
     pin = pin % 16;
     uint8_t port;
-    if(pin < 8) {
+    //si le 4e bit est à 1, on est sur le port B
+    if(pin & 8) {
         port = GPIOA;
     } else {
         port = GPIOB;

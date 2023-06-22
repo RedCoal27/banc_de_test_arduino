@@ -1,28 +1,27 @@
 #include <Arduino.h>
 #include <mcp.h>
 
-mcp mcp1(0x20);
-mcp mcp2(0x27);
+#include <DO/DO.h>
+
+mcp mcp0(0x20);//test input temporaire 
+
+DO _DO; // Classe qui gère tous les ports de sortie
+
 
 void setup() {
     Serial.begin(9600);
-    mcp1.begin();
-    mcp1.setupPortA(0x00, 0x0f, 0xff);
-    mcp1.setupPortB(0x00, 0x0f, 0xff);
-    
-    mcp2.begin();
-    mcp2.setupPortA(0x00, 0x00, 0x00);
+    mcp0.setupPortA(0x00, 0x0f, 0xff);
+    mcp0.setupPortB(0x00, 0x0f, 0xff);
 }
 
 byte test = 0;
 void loop() {
-    byte pinA = mcp1.readGPIO(GPIOA);
+    byte pinA = mcp0.readGPIO(GPIOA);
     Serial.println(pinA, BIN);
-    mcp2.writeGPIO(GPIOA, !pinA);
 
-    mcp2.writeGPIO(GPIOA, 0);
+    _DO.OpenSV();
     delay(2000);
-    mcp2.writeGPIO(GPIOA, 1);
+    _DO.CloseSV();
     delay(2000);
     
 }

@@ -45,9 +45,9 @@
 #define GV_CVD DB25_6   //pin MCP0 B1
 
 #define SV_Open DB25_7   //pin MCP1 B7
-#define WL3_UP DB25_8    //pin MCP1 B5
-#define WL2_UP DB25_9    //pin MCP1 B3
-#define WL1_UP DB25_10   //pin MCP1 B1
+#define WL3_Up DB25_8    //pin MCP1 B5
+#define WL2_Up DB25_9    //pin MCP1 B3
+#define WL1_Up DB25_10   //pin MCP1 B1
 
 #define Iso_ch DB25_14          //pin MCP0 A3
 #define Iso_Turbo DB25_15       //pin MCP0 A2
@@ -55,6 +55,6 @@
 #define Iso_RGA_pompe DB25_17   //pin MCP0 A
 
 #define SV_Close DB25_20 //pin MCP1 B2
-#define WL3_DOWN DB25_21 //pin MCP1 B0
-#define WL2_DOWN DB25_22 //pin MCP1 B2
-#define WL1_DOWN DB25_23 //pin MCP1 B0
+#define WL3_Down DB25_21 //pin MCP1 B0
+#define WL2_Down DB25_22 //pin MCP1 B2
+#define WL1_Down DB25_23 //pin MCP1 B0
