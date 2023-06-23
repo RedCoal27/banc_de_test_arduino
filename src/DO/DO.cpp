@@ -24,6 +24,7 @@ void DO::FourWay(byte pin_actif, byte pin_inactif) {
     portB &= ~(1 << (pin_inactif%8));
     //mettre à 1 le pin actif
     portB |= (1 << (pin_actif%8));
+    mcp1.writeGPIO(GPIOB, portB);
 }
 
 
@@ -58,5 +59,3 @@ void DO::OpenWL3() {
 void DO::CloseWL3() {
     FourWay(WL3_Down, WL3_Up);
 }
-
-
