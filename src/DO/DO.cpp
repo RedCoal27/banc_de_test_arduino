@@ -18,7 +18,7 @@ void DO::writePin(byte pin, byte value) {
 
 
 // Permet d'avoir un état haut et l'autre a bas en même temps pour Waver life et slit valve (pin_actif,pin_inactif)
-void DO::FourWay(byte pin_actif, byte pin_inactif) {
+void DO::FourWayDouble(byte pin_actif, byte pin_inactif) {
     byte portB = mcp1.readGPIO(GPIOB);
     //mettre à 0 le pin inactif
     portB &= ~(1 << (pin_inactif%8));
@@ -29,33 +29,33 @@ void DO::FourWay(byte pin_actif, byte pin_inactif) {
 
 
 void DO::OpenSV() {
-    FourWay(SV_Open, SV_Close);
+    FourWayDouble(SV_Open, SV_Close);
 }
 
 void DO::CloseSV() {
-    FourWay(SV_Close, SV_Open);
+    FourWayDouble(SV_Close, SV_Open);
 }
 
 void DO::OpenWL1() {
-    FourWay(WL1_Up, WL1_Down);
+    FourWayDouble(WL1_Up, WL1_Down);
 }
 
 void DO::CloseWL1() {
-    FourWay(WL1_Down, WL1_Up);
+    FourWayDouble(WL1_Down, WL1_Up);
 }
 
 void DO::OpenWL2() {
-    FourWay(WL2_Up, WL2_Down);
+    FourWayDouble(WL2_Up, WL2_Down);
 }
 
 void DO::CloseWL2() {
-    FourWay(WL2_Down, WL2_Up);
+    FourWayDouble(WL2_Down, WL2_Up);
 }
 
 void DO::OpenWL3() {
-    FourWay(WL3_Up, WL3_Down);
+    FourWayDouble(WL3_Up, WL3_Down);
 }
 
 void DO::CloseWL3() {
-    FourWay(WL3_Down, WL3_Up);
+    FourWayDouble(WL3_Down, WL3_Up);
 }

@@ -12,7 +12,7 @@ class DO {
         mcp mcp0;
         mcp mcp1;
         void writePin(byte pin, byte value);
-        void FourWay(byte pin_actif, byte pin_inactif); // retire la nécéssité d'avoir un inverseur pour les 4way valve
+        void FourWayDouble(byte pin_actif, byte pin_inactif); // retire la nécéssité d'avoir un inverseur pour les 4way valve
     public:
         DO();
         void OpenSV();
