@@ -1,26 +1,54 @@
 #include "mcp.h"
 
-
+/**
+ * @brief Construct a new mcp object
+ * 
+ * @param chipAddr The address of the MCP23017 chip
+ */
 mcp::mcp(uint8_t chipAddr) {
     _chipAddr = chipAddr;
 }
 
+/**
+ * @brief Initializes the Wire library
+ * 
+ */
 void mcp::begin() {
     Wire.begin();
 }
 
+/**
+ * @brief Configures the MCP23017 Port A
+ * 
+ * @param polarity The polarity of the input pins
+ * @param pullup The pull-up resistor configuration
+ * @param dir The direction of the pins
+ */
 void mcp::setupPortA(uint8_t polarity, uint8_t pullup, uint8_t dir) {
     mcu_write(GPPUA, pullup);
     mcu_write(IODIRA, dir);
     mcu_write(IPOLA, polarity);
 }
 
+/**
+ * @brief Configures the MCP23017 Port B
+ * 
+ * @param polarity The polarity of the input pins
+ * @param pullup The pull-up resistor configuration
+ * @param dir The direction of the pins
+ */
 void mcp::setupPortB(uint8_t polarity, uint8_t pullup, uint8_t dir) {
     mcu_write(GPPUB, pullup);
     mcu_write(IODIRB, dir);
     mcu_write(IPOLB, polarity);
 }
 
+/**
+ * @brief Writes a value to a MCP23017 register
+ * 
+ * @param registre The register to write to
+ * @param value The value to write
+ */
 void mcp::mcu_write(int registre, int value){
     Wire.beginTransmission(_chipAddr);
     Wire.write(registre);
@@ -28,6 +56,12 @@ void mcp::mcu_write(int registre, int value){
     Wire.endTransmission();
 }
 
+/**
+ * @brief Reads the value of a MCP23017 GPIO port
+ * 
+ * @param port The port to read from
+ * @return byte The value of the port
+ */
 byte mcp::readGPIO(byte port) {
     byte pin;
     Wire.beginTransmission(_chipAddr);
@@ -41,12 +75,22 @@ byte mcp::readGPIO(byte port) {
     return pin;
 }
 
+/**
+ * @brief Writes a value to a MCP23017 GPIO port
+ * 
+ * @param port The port to write to
+ * @param value The value to write
+ */
 void mcp::writeGPIO(byte port, byte value) {
     mcu_write(port, value);
 }
 
-
-
+/**
+ * @brief Writes a value to a MCP23017 GPIO pin
+ * 
+ * @param pin The pin to write to
+ * @param value The value to write
+ */
 void mcp::writePin(uint8_t pin, bool value) {
     //on s'assure que le pin est entre 0 et 15 (on retire l'information du mcp)
     pin = pin % 16;
@@ -70,6 +114,12 @@ void mcp::writePin(uint8_t pin, bool value) {
     writeGPIO(port, current);
 }
 
+/**
+ * @brief Reads the value of a MCP23017 GPIO pin
+ * 
+ * @param pin The pin to read from
+ * @return bool The value of the pin
+ */
 bool mcp::readPin(uint8_t pin) {
     pin = pin % 16;
     uint8_t port;

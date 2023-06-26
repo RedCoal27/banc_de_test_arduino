@@ -2,6 +2,16 @@
 #include <Arduino.h>
 #include "mcp.h"
 
+/**
+ * @brief This file defines the pinout of a DB25 connector using two MCP23017 chips.
+ * 
+ * The pins are defined using binary values (B0, B1, etc.) and are mapped to their respective
+ * MCP chip and pin number. The pins are also given a name for easier reference in the code.
+ * 
+ * @note This file requires the "mcp.h" library to be included.
+ */
+
+
 // pinout MCP23017 -> DB25 connector, | 16 is for MCP1 (second chip)
 
 #define DB25_1 B0   //MCF1 (MCP0)

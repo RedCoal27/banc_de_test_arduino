@@ -1,3 +1,15 @@
+/**
+ * @file mcp.h
+ * @brief Library for controlling MCP23017 I/O expander chip.
+ * 
+ * This library provides an interface for controlling the MCP23017 I/O expander chip using the Arduino framework.
+ * It defines the MCP class, which allows the user to configure and control the chip's pins and ports.
+ * 
+ * @note This library requires the Arduino.h and Wire.h libraries to be included.
+ * 
+ * @author Maillet Alexandre
+ * @date 26/06/2023
+ */
 #ifndef mcp_H
 #define mcp_H
 

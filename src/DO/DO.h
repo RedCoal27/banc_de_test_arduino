@@ -1,3 +1,12 @@
+/**
+ * @file DO.h
+ * @brief Header file for the DO class that controls digital outputs.
+ * 
+ * This file declares the DO class, which is responsible for controlling digital outputs such as solenoid valves and water level sensors.
+ * It includes the mcp.h and DB25.h header files, which are used for communication with the MCP23017 I/O expander and the DB25 connector respectively.
+ * The DO class has methods to open and close different electrovalves.
+ * 
+ */
 #pragma once
 #include <Arduino.h>
 #include "mcp.h"
