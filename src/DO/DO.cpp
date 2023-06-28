@@ -1,7 +1,15 @@
+/**
+ * @file DO.cpp
+ * @brief Implementation of the DO class methods to control digital outputs
+ * 
+ */
+
 #include "DO/DO.h"
 
 /**
  * @brief Construct a new DO object
+ * 
+ * Initializes the MCP23017 chips and sets up the ports for both chips.
  * 
  */
 DO::DO(): mcp0(Address_MCP0), mcp1(Address_MCP1) {
@@ -27,22 +35,24 @@ void DO::writePin(byte pin, byte value) {
 }
 
 /**
- * @brief Set two pins to opposite values (one high, one low) for Waver lift and slit valve
+ * @brief Set the four-way double valve to a specific position
  * 
- * @param pin_actif The pin number to set high
- * @param pin_inactif The pin number to set low
+ * @param pin_actif The pin number to activate
+ * @param pin_inactif The pin number to deactivate
  */
 void DO::FourWayDouble(byte pin_actif, byte pin_inactif) {
-    byte portB = mcp1.readGPIO(GPIOB);
+    byte portB = mcp0.readGPIO(GPIOB);
     //mettre à 0 le pin inactif
     portB &= ~(1 << (pin_inactif%8));
     //mettre à 1 le pin actif
     portB |= (1 << (pin_actif%8));
-    mcp1.writeGPIO(GPIOB, portB);
+    mcp0.writeGPIO(GPIOB, portB);
 }
 
 /**
  * @brief Open the slit valve
+ * 
+ * Activates the pin for opening the slit valve and deactivates the pin for closing it.
  * 
  */
 void DO::OpenSV() {
@@ -52,13 +62,17 @@ void DO::OpenSV() {
 /**
  * @brief Close the slit valve
  * 
+ * Activates the pin for closing the slit valve and deactivates the pin for opening it.
+ * 
  */
 void DO::CloseSV() {
     FourWayDouble(SV_Close, SV_Open);
 }
 
 /**
- * @brief Open the first waver lift
+ * @brief Open the first wafer lift
+ * 
+ * Activates the pin for lifting the first wafer and deactivates the pin for lowering it.
  * 
  */
 void DO::OpenWL1() {
@@ -66,7 +80,9 @@ void DO::OpenWL1() {
 }
 
 /**
- * @brief Close the first waver lift
+ * @brief Close the first wafer lift
+ * 
+ * Activates the pin for lowering the first wafer and deactivates the pin for lifting it.
  * 
  */
 void DO::CloseWL1() {
@@ -74,7 +90,9 @@ void DO::CloseWL1() {
 }
 
 /**
- * @brief Open the second waver lift
+ * @brief Open the second wafer lift
+ * 
+ * Activates the pin for lifting the second wafer and deactivates the pin for lowering it.
  * 
  */
 void DO::OpenWL2() {
@@ -82,7 +100,9 @@ void DO::OpenWL2() {
 }
 
 /**
- * @brief Close the second waver lift
+ * @brief Close the second wafer lift
+ * 
+ * Activates the pin for lowering the second wafer and deactivates the pin for lifting it.
  * 
  */
 void DO::CloseWL2() {
@@ -90,7 +110,9 @@ void DO::CloseWL2() {
 }
 
 /**
- * @brief Open the third waver lift
+ * @brief Open the third wafer lift
+ * 
+ * Activates the pin for lifting the third wafer and deactivates the pin for lowering it.
  * 
  */
 void DO::OpenWL3() {
@@ -98,7 +120,9 @@ void DO::OpenWL3() {
 }
 
 /**
- * @brief Close the third waver lift
+ * @brief Close the third wafer lift
+ * 
+ * Activates the pin for lowering the third wafer and deactivates the pin for lifting it.
  * 
  */
 void DO::CloseWL3() {

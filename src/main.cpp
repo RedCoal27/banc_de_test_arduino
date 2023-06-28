@@ -21,7 +21,6 @@ void loop() {
 
     _DO.OpenSV();
     delay(2000);
-    _DO.CloseSV();
+    _DO.OpenWL2();
     delay(2000);
-    
 }
