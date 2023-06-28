@@ -24,13 +24,5 @@ class DO {
         void FourWayDouble(byte pin_actif, byte pin_inactif); // retire la nécéssité d'avoir un inverseur pour les 4way valve
     public:
         DO();
-        void OpenSV();
-        void CloseSV();
-        void OpenWL1();
-        void CloseWL1();
-        void OpenWL2();
-        void CloseWL2();
-        void OpenWL3();
-        void CloseWL3();
-
+        void Command(char action);
 };

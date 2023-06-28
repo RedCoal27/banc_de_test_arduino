@@ -14,4 +14,6 @@ class DI {
         mcp mcp3;
     public:
         DI();
+        void interlock();
+        void Command(char action);
 };

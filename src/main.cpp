@@ -1,26 +1,29 @@
 #include <Arduino.h>
-#include <mcp.h>
+#include <cmd.h>
 
-#include <DO/DO.h>
+cmd _CMD; //classe commande
 
-mcp mcp0(0x20);//test input temporaire 
-
-DO _DO; // Classe qui gère tous les ports de sortie
+//fonction interuption
+void interlock(){
+    //desactivation global interuption
+    noInterrupts();
+    _CMD._DI.interlock();
+    //activation global interuption
+    interrupts();
+}
 
 
 void setup() {
     Serial.begin(9600);
-    mcp0.setupPortA(0x00, 0x0f, 0xff);
-    mcp0.setupPortB(0x00, 0x0f, 0xff);
+    attachInterrupt(digitalPinToInterrupt(2), interlock, RISING);
+    attachInterrupt(digitalPinToInterrupt(3), receiveSerial, RISING);
 }
 
-byte test = 0;
 void loop() {
-    byte pinA = mcp0.readGPIO(GPIOA);
-    Serial.println(pinA, BIN);
-
-    _DO.OpenSV();
-    delay(2000);
-    _DO.OpenWL2();
-    delay(2000);
+    //wait for serial data
+    while(Serial.available() == 0);
+    _CMD.Command();//execute received command
 }
+
+
+
