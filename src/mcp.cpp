@@ -15,6 +15,7 @@ mcp::mcp(uint8_t chipAddr) {
  */
 void mcp::begin() {
     Wire.begin();
+    mcu_write(IOCON,0b00001000);
 }
 
 /**
@@ -49,25 +50,26 @@ void mcp::setupPortB(uint8_t polarity, uint8_t pullup, uint8_t dir) {
  * @param registre The register to write to
  * @param value The value to write
  */
-void mcp::mcu_write(byte registre, byte value){
+void mcp::mcu_write(uint8_t registre, uint8_t value){
     Wire.beginTransmission(_chipAddr);
     Wire.write(registre);
     Wire.write(value);
+    
 }
 
 /**
  * @brief Reads the value of a MCP23017 GPIO port
  * 
  * @param port The port to read from
- * @return byte The value of the port
+ * @return uint8_t The value of the port
  */
-byte mcp::readGPIO(byte port) {
-    byte pin;
+uint8_t mcp::readGPIO(uint8_t port) {
+    uint8_t pin;
     Wire.beginTransmission(_chipAddr);
     Wire.write(port);
     Wire.endTransmission();
     delay(10);
-    Wire.requestFrom(_chipAddr,1);
+    Wire.requestFrom(_chipAddr, 1);
     if(Wire.available()){
         pin = Wire.read();
     }
@@ -80,7 +82,7 @@ byte mcp::readGPIO(byte port) {
  * @param port The port to write to
  * @param value The value to write
  */
-void mcp::writeGPIO(byte port, byte value) {
+void mcp::writeGPIO(uint8_t port, uint8_t value) {
     mcu_write(port, value);
 }
 
@@ -94,22 +96,25 @@ void mcp::writePin(uint8_t pin, bool value) {
     //on s'assure que le pin est entre 0 et 15 (on retire l'information du mcp)
     pin = pin % 16;
     uint8_t port;
+
     
     //si le 4e bit est à 1, on est sur le port B
-    if(pin & 8) {
+    if(pin>>4 == 1) {
         port = GPIOA;
     } else {
         port = GPIOB;
         pin -= 8;
     }
 
-    byte current = readGPIO(port);
+    uint8_t current = readGPIO(port);
+    Serial.print(current);
+    Serial.print(' ');
+
     if(value) {
         current |= (1 << pin);
     } else {
         current &= ~(1 << pin);
     }
-
     writeGPIO(port, current);
 }
 
@@ -130,6 +135,6 @@ bool mcp::readPin(uint8_t pin) {
         pin -= 8;
     }
 
-    byte current = readGPIO(port);
+    uint8_t current = readGPIO(port);
     return (current >> pin) & 1;
 }

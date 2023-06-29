@@ -25,7 +25,7 @@
 #define IPOLB 0x03 // PortB polarity register
 #define GPPUA 0x0c // PortA pull-up resistor configuration
 #define GPPUB 0x0d // PortB pull-up resistor configuration
-
+#define IOCON 0x05 //configuration interne comme bank
 
 #define MCP_A0 0
 #define MCP_A1 1
@@ -52,7 +52,7 @@ class mcp {
         void begin();
         void setupPortA(uint8_t polarity, uint8_t pullup, uint8_t dir);
         void setupPortB(uint8_t polarity, uint8_t pullup, uint8_t dir);
-        byte readGPIO(uint8_t port);
+        uint8_t readGPIO(uint8_t port);
         void writeGPIO(uint8_t port, uint8_t value);
         void writePin(uint8_t pin, bool value);
         bool readPin(uint8_t pin);

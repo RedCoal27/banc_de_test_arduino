@@ -20,9 +20,9 @@ class DO {
     private:
         mcp mcp0;
         mcp mcp1;
-        void writePin(byte pin, byte value);
-        void FourWayDouble(byte pin_actif, byte pin_inactif); // retire la nécéssité d'avoir un inverseur pour les 4way valve
+        void writePin(uint8_t pin, uint8_t value);
+        void FourWayDouble(uint8_t pin_actif, uint8_t pin_inactif); // retire la nécéssité d'avoir un inverseur pour les 4way valve
     public:
         DO();
-        void Command(char action);
+        void Command(uint8_t action);
 };

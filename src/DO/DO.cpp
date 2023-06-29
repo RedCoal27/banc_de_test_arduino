@@ -28,11 +28,11 @@ DO::DO(): mcp0(Address_MCP0), mcp1(Address_MCP1) {
  * @param pin The pin number to write to
  * @param value The value to write (0 or 1)
  */
-void DO::writePin(byte pin, byte value) {
+void DO::writePin(uint8_t pin, uint8_t value) {
     if (pin < 16)
-        mcp0.writeGPIO(pin, value);
+        mcp0.writePin(pin, value);
     else
-        mcp1.writeGPIO(pin, value);
+        mcp1.writePin(pin, value);
 }
 
 
@@ -45,8 +45,8 @@ void DO::writePin(byte pin, byte value) {
  * @note Cette fonction active le pin_on et désactive le pin_off sur le même port B du MCP23017.
  * @note La fonction utilise la méthode writeGPIO pour écrire sur le port B du MCP23017.
  */
-void DO::FourWayDouble(byte pin_on, byte pin_off) {
-    byte portB = mcp0.readGPIO(GPIOB);
+void DO::FourWayDouble(uint8_t pin_on, uint8_t pin_off) {
+    uint8_t portB = mcp0.readGPIO(GPIOB);
     //mettre à 0 le pin inactif
     portB &= ~(1 << (pin_off%8));
     //mettre à 1 le pin actif
@@ -66,7 +66,7 @@ void DO::FourWayDouble(byte pin_on, byte pin_off) {
  * @note La fonction utilise les méthodes writePin et FourWayDouble pour définir l'état des broches.
  * @note La fonction imprime 1 sur le port série après l'exécution de la commande
  */
-void DO::Command(char action){
+void DO::Command(uint8_t action){
     //niveau bas = 1, niveau haut = 0
     bool state = action % 2;
     action = action / 2;

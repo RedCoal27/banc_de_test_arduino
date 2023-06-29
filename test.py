@@ -6,16 +6,19 @@ import time
 ser = serial.Serial()
 ser.baudrate = 9600
 ser.port = 'COM3'
-ser.timeout = 1
+ser.timeout = 0.5
 ser.open()
 time.sleep(2)
 
+def send_command(type,action):
+    ser.write(bytes([type]))
+    time.sleep(0.01)
+    ser.write(bytes([action]))
+    print(f"Read: {ser.read(10)}")
+    ser.reset_input_buffer()
+
 while True:
-    ser.write(bytes(0))
-    ser.write(bytes(2))
-    print(ser.read(1))
+    send_command(0,2)
     time.sleep(2)
-    ser.write(bytes(0))
-    ser.write(bytes(3))
-    print(ser.read(1))
+    send_command(0,3)
     time.sleep(2)

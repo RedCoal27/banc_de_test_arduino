@@ -12,8 +12,9 @@ cmd::cmd(){
  * 
  */
 void cmd::Command(){
-    char port = Serial.read();
+    uint8_t port = Serial.read();
     //switch case pour les ports
+    while(Serial.available() == 0);
     switch (port)
     {
     case 0:
