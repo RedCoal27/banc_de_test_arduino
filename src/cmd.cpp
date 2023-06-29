@@ -4,7 +4,7 @@
  * @brief Constructeur de l'objet cmd
  * 
  */
-cmd::cmd():_DO(),_DI() {
+cmd::cmd(){
 }
 
 /**

@@ -49,11 +49,10 @@ void mcp::setupPortB(uint8_t polarity, uint8_t pullup, uint8_t dir) {
  * @param registre The register to write to
  * @param value The value to write
  */
-void mcp::mcu_write(int registre, int value){
+void mcp::mcu_write(byte registre, byte value){
     Wire.beginTransmission(_chipAddr);
     Wire.write(registre);
     Wire.write(value);
-    Wire.endTransmission();
 }
 
 /**

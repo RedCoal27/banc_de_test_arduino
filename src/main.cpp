@@ -22,6 +22,7 @@ void loop() {
     //wait for serial data
     while(Serial.available() == 0);
     _CMD.Command();//execute received command
+    Serial.print('y');
 }
 
 
