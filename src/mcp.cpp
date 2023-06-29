@@ -15,7 +15,7 @@ mcp::mcp(uint8_t chipAddr) {
  */
 void mcp::begin() {
     Wire.begin();
-    mcu_write(IOCON,0b00001000);
+    // mcu_write(IOCON,0b00001000);
 }
 
 /**
@@ -51,10 +51,11 @@ void mcp::setupPortB(uint8_t polarity, uint8_t pullup, uint8_t dir) {
  * @param value The value to write
  */
 void mcp::mcu_write(uint8_t registre, uint8_t value){
+
     Wire.beginTransmission(_chipAddr);
     Wire.write(registre);
     Wire.write(value);
-    
+    Wire.endTransmission();
 }
 
 /**
@@ -99,17 +100,15 @@ void mcp::writePin(uint8_t pin, bool value) {
 
     
     //si le 4e bit est à 1, on est sur le port B
-    if(pin>>4 == 1) {
+    if(pin < 8) {
         port = GPIOA;
     } else {
         port = GPIOB;
         pin -= 8;
     }
 
-    uint8_t current = readGPIO(port);
-    Serial.print(current);
-    Serial.print(' ');
 
+    uint8_t current = readGPIO(port);
     if(value) {
         current |= (1 << pin);
     } else {

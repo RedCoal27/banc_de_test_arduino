@@ -15,5 +15,6 @@ class DI {
         void read_all();
     public:
         DI();
+        void begin();
         void Command(char action);
 };

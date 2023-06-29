@@ -13,9 +13,9 @@
  * 
  */
 DI::DI(): mcp2(Address_MCP2), mcp3(Address_MCP3) {
-    Serial.begin(9600);
-    mcp2.begin();
-    mcp3.begin();
+}
+
+void DI::begin(){
     mcp2.setupPortA(0,0xFF,0xFF);
     mcp2.setupPortB(0,0xFF,0xFF);
     mcp3.setupPortA(0,0xFF,0xFF);

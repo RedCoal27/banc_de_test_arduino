@@ -13,14 +13,14 @@
  * 
  */
 DO::DO(): mcp0(Address_MCP0), mcp1(Address_MCP1) {
-    mcp0.begin();
-    mcp1.begin();
-    mcp0.setupPortA(0, 0, 0);
-    mcp0.setupPortB(0, 0, 0);
-    mcp1.setupPortA(0, 0, 0);
-    mcp1.setupPortB(0, 0, 0);
 }
 
+void DO::begin(){
+    mcp0.setupPortA(0, 0x00,0x00);
+    mcp0.setupPortB(0, 0, 0);
+    mcp1.setupPortA(0, 0x00, 0x00);
+    mcp1.setupPortB(0, 0, 0);
+}
 
 /**
  * @brief Write a value to a specific pin
@@ -125,6 +125,10 @@ void DO::Command(uint8_t action){
         break;
     case 17://Iso_RGA_pompe
         writePin(Out_Iso_RGA_pompe, state);
+        break;
+
+    case 26: //db9
+        writePin(Out_Pump_Start,state);
         break;
     }
     // Serial.print(1);

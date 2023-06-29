@@ -1,4 +1,6 @@
 #include <Arduino.h>
+
+
 #include <cmd.h>
 
 cmd _CMD; //classe commande
@@ -15,7 +17,8 @@ cmd _CMD; //classe commande
 
 void setup() {
     Serial.begin(9600);
-    // attachInterrupt(digitalPinToInterrupt(2), interlock, RISING);
+    Wire.begin();
+    _CMD.begin();
 }
 
 void loop() {
@@ -24,6 +27,4 @@ void loop() {
     _CMD.Command();//execute received command
     Serial.flush();
 }
-
-
 

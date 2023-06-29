@@ -27,6 +27,7 @@
 #define GPPUB 0x0d // PortB pull-up resistor configuration
 #define IOCON 0x05 //configuration interne comme bank
 
+
 #define MCP_A0 0
 #define MCP_A1 1
 #define MCP_A2 2
@@ -56,9 +57,9 @@ class mcp {
         void writeGPIO(uint8_t port, uint8_t value);
         void writePin(uint8_t pin, bool value);
         bool readPin(uint8_t pin);
+        void mcu_write(uint8_t registre, uint8_t value);
     private:
         uint8_t _chipAddr;
-        void mcu_write(uint8_t registre, uint8_t value);
 };
 
 #endif

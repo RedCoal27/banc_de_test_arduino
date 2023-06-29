@@ -7,6 +7,11 @@
 cmd::cmd(){
 }
 
+void cmd::begin(){
+    _DO.begin();
+    _DI.begin();
+}
+
 /**
  * @brief Lit une commande depuis le port série et l'exécute
  * 

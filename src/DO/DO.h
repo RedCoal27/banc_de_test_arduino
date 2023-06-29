@@ -24,5 +24,6 @@ class DO {
         void FourWayDouble(uint8_t pin_actif, uint8_t pin_inactif); // retire la nécéssité d'avoir un inverseur pour les 4way valve
     public:
         DO();
+        void begin();
         void Command(uint8_t action);
 };

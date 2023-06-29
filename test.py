@@ -14,11 +14,12 @@ def send_command(type,action):
     ser.write(bytes([type]))
     time.sleep(0.01)
     ser.write(bytes([action]))
-    print(f"Read: {ser.read(10)}")
+    print(f"Read: {ser.read(12)}")
     ser.reset_input_buffer()
 
 while True:
-    send_command(0,2)
+    test = int(input("Action: "))*2
+    send_command(1,test)
     time.sleep(2)
-    send_command(0,3)
-    time.sleep(2)
+    # send_command(1,test)
+    # time.sleep(2)
