@@ -12,8 +12,8 @@ class DI {
     private:
         mcp mcp2;
         mcp mcp3;
+        void read_all();
     public:
         DI();
-        void interlock();
         void Command(char action);
 };

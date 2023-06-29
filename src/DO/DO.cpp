@@ -73,59 +73,59 @@ void DO::Command(char action){
     switch (action)
     {
     case 1://MCF1
-        writePin(MCF1, state);
+        writePin(Out_MCF1, state);
         break;
     case 2://MCF2
-        writePin(MCF2, state);
+        writePin(Out_MCF2, state);
         break;
     case 3://Numpro final
-        writePin(Nupro_Final, state);
+        writePin(Out_Nupro_Final, state);
         break;
     case 4://Numpro Vent
-        writePin(Nupro_Vent, state);
+        writePin(Out_Nupro_Vent, state);
         break;
     case 5://GV_PVD
-        writePin(GV_PVD, state);
+        writePin(Out_GV_PVD, state);
         break;
     case 6://GV_CVD
-        writePin(GV_CVD, state);
+        writePin(Out_GV_CVD, state);
         break;
     case 7://SV
         if (state)
-            FourWayDouble(SV_Close, SV_Open);//Ouvre la SV 
+            FourWayDouble(Out_SV_Close, Out_SV_Open);//Ouvre la SV 
         else
-            FourWayDouble(SV_Open, SV_Close);//Ferme la SV
+            FourWayDouble(Out_SV_Open, Out_SV_Close);//Ferme la SV
         break;
     case 8://WL3
         if (state)
-            FourWayDouble(WL3_Down, WL3_Up);//Monte le WL3
+            FourWayDouble(Out_WL3_Down, Out_WL3_Up);//Monte le WL3
         else
-            FourWayDouble(WL3_Up, WL3_Down);//Descend le WL3
+            FourWayDouble(Out_WL3_Up, Out_WL3_Down);//Descend le WL3
         break;
     case 9://WL2
         if (state)
-            FourWayDouble(WL2_Down, WL2_Up);//Monte le WL2
+            FourWayDouble(Out_WL2_Down, Out_WL2_Up);//Monte le WL2
         else
-            FourWayDouble(WL2_Up, WL2_Down);//Descend le WL2
+            FourWayDouble(Out_WL2_Up, Out_WL2_Down);//Descend le WL2
         break;
     case 10://WL1
         if (state)
-            FourWayDouble(WL1_Down, WL1_Up);//Monte le WL1
+            FourWayDouble(Out_WL1_Down, Out_WL1_Up);//Monte le WL1
         else
-            FourWayDouble(WL1_Up, WL1_Down);//Descend le WL1
+            FourWayDouble(Out_WL1_Up, Out_WL1_Down);//Descend le WL1
         break;
     case 14://Iso_ch
-        writePin(Iso_ch, state);
+        writePin(Out_Iso_ch, state);
         break;
     case 15://Iso_Turbo
-        writePin(Iso_Turbo, state);
+        writePin(Out_Iso_Turbo, state);
         break;
     case 16://Iso_RGA_ch
-        writePin(Iso_RGA_ch, state);
+        writePin(Out_Iso_RGA_ch, state);
         break;
     case 17://Iso_RGA_pompe
-        writePin(Iso_RGA_pompe, state);
+        writePin(Out_Iso_RGA_pompe, state);
         break;
     }
-    Serial.print(1);
+    // Serial.print(1);
 }

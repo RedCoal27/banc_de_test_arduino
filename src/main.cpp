@@ -3,20 +3,19 @@
 
 cmd _CMD; //classe commande
 
-//fonction interuption
-void interlock(){
-    //desactivation global interuption
-    noInterrupts();
-    _CMD._DI.interlock();
-    //activation global interuption
-    interrupts();
-}
+// //fonction interuption
+// void interlock(){
+//     //desactivation global interuption
+//     noInterrupts();
+//     _CMD._DI.interlock();
+//     //activation global interuption
+//     interrupts();
+// }
 
 
 void setup() {
     Serial.begin(9600);
-    attachInterrupt(digitalPinToInterrupt(2), interlock, RISING);
-    attachInterrupt(digitalPinToInterrupt(3), receiveSerial, RISING);
+    // attachInterrupt(digitalPinToInterrupt(2), interlock, RISING);
 }
 
 void loop() {

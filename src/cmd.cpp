@@ -20,7 +20,7 @@ void cmd::Command(){
         _DO.Command(Serial.read());
         break;
     case 1:
-        Command_DI(Serial.read());
+        _DI.Command(Serial.read());
         break;
     default:
         Serial.print(0);
