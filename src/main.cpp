@@ -1,49 +1,26 @@
 #include <Arduino.h>
 
-
-#include <cmd.h>
-
+#include "analog/AD660.h"
 #include "analog/AD7734.h"
 
-cmd _CMD; //classe commande
-
-// //fonction interuption
-// void interlock(){
-//     //desactivation global interuption
-//     noInterrupts();
-//     _CMD._DI.interlock();
-//     //activation global interuption
-//     interrupts();
-// }
-
-
-// void setup() {
-//     Serial.begin(9600);
-//     Wire.begin();
-//     _CMD.begin();
-// }
-
-// void loop() {
-//     //wait for serial data
-//     while(Serial.available() == 0);
-//     _CMD.Command();//execute received command
-//     Serial.flush();
-// }
-
-
-AD7734 ad7734;
+AD660 dac(9);  // Utiliser la broche 9 pour LDAC
+AD7734 adc(10);
 
 void setup() {
     Serial.begin(9600);
-    ad7734.configure();
+    dac.begin();
+    adc.configure();
 }
 
 void loop() {
-    for (int channel = 0; channel < 4; channel++) {
-        Serial.print("Channel ");
-        Serial.print(channel);
-        Serial.print(": ");
-        Serial.println(ad7734.readChannel(channel),4);
-    }
+    dac.writeVoltage(9);  // Ecrire 5V
+    delay(1000);
+    Serial.print("1: ");
+    Serial.println(adc.readChannel(1),4);
+    delay(1000);
+    dac.writeVoltage(2.301);  // Ecrire 5V
+    delay(1000);
+    Serial.print("2: ");
+    Serial.println(adc.readChannel(1),4);
     delay(1000);
 }
