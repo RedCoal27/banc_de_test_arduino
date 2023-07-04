@@ -1,7 +1,7 @@
 #include "analog/AD7734.h"
 
-AD7734::AD7734() {
-    pinMode(CS_PIN, OUTPUT);
+AD7734::AD7734(uint8_t CS_PIN):_CS_PIN(CS_PIN){
+    pinMode(_CS_PIN, OUTPUT);
     SPI.setClockDivider(SPI_CLOCK_DIV32);
     SPI.begin();
 }
@@ -34,22 +34,26 @@ uint32_t AD7734::readAverageValue(byte channel, int sample){
 }
 
 void AD7734::writeRegister(byte reg, byte value) {
-    digitalWrite(CS_PIN, LOW);
+    SPI.beginTransaction(SPISettings());
+    digitalWrite(_CS_PIN, LOW);
     SPI.transfer(reg);
     SPI.transfer(value);
-    digitalWrite(CS_PIN, HIGH);
+    digitalWrite(_CS_PIN, HIGH);
+    SPI.endTransaction();
 }
 
 uint32_t AD7734::readRegister(byte reg, byte toRead) {
-    digitalWrite(CS_PIN, LOW);
+    SPI.beginTransaction(SPISettings());
+    digitalWrite(_CS_PIN, LOW);
     SPI.transfer(reg | 64);
     uint32_t value = 0;
     for(int i = 0; i < toRead; i++){
         value = value << 8;
         value += uint32_t(SPI.transfer(0x00));
     }
-    digitalWrite(CS_PIN, HIGH);
+    digitalWrite(_CS_PIN, HIGH);
     return value;
+    SPI.endTransaction();
 }
 
 

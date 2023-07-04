@@ -6,7 +6,7 @@
 #include <Arduino.h>
 #include <SPI.h>
 
-#define CS_PIN 10
+
 #define COMMUNICATIONS_REG 0x00
 #define CHANNEL_SETUP_REG 0x28
 #define CHANNEL_DATA_REG 0x08
@@ -18,7 +18,7 @@
 
 class AD7734 {
     public:
-        AD7734();
+        AD7734(uint8_t CS_Pin);
         void configure();
         float tensionConverter(uint32_t value);
         uint32_t readAverageValue(byte channel, int sample);
@@ -26,6 +26,7 @@ class AD7734 {
     private:
         void writeRegister(byte reg, byte value);
         uint32_t readRegister(byte reg, byte toRead);
+        uint8_t _CS_PIN;
 };
 
 #endif // AD7734_H
