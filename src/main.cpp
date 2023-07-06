@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <SoftwareSerial.h>
 
 #include "analog/AD660.h"
 #include "analog/AD7734.h"
