@@ -10,7 +10,7 @@
 SoftwareSerial rs485(RX_PIN, TX_PIN);
 
 //les ID sont 06 et 07 (fin du numéro de série)
-
+//il faut d'abords les configurer une a une
 void enumerateGauges()
 {
     // rs485.println("!C781 2");
