@@ -2,7 +2,7 @@
 #include <SoftwareSerial.h>
 
 #define RX_PIN DD3
-#define TX_PIN DD2
+#define TX_PIN DD4
 #define NUM_GAUGES 1
 #define MAX_NODE_ADDRESSES 98
 #define MAX_SERIAL_LENGTH 10
