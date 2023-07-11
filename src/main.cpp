@@ -13,9 +13,9 @@ SoftwareSerial rs485(RX_PIN, TX_PIN);
 //il faut d'abords les configurer une a une
 void enumerateGauges()
 {
-    // rs485.println("!C781 2");
-    // rs485.println("#00:01!C781 2");
-    rs485.println("#51:00!S750 07");
+    // rs485.println("!C781 1");
+    // rs485.println("#00:01!C781 1");
+    // rs485.println("#51:00!S750 07");
     delay(500);
     for(int i= 1;i<=98;i++){
         String test = "#";
@@ -38,14 +38,22 @@ void enumerateGauges()
 void setup()
 {
     Serial.begin(9600);
-    rs485.begin(9600);
-
-    enumerateGauges();
-
+    rs485.begin(19200);
+    rs485.println("#00:01!C780 1");
+    // enumerateGauges();
+    rs485.begin(38400);
+    delay(100);
     // Ici vous pouvez insérer le code pour interagir avec les jauges une fois l'énumération terminée
 }
 
 void loop()
 {
-    // Insérer ici la logique de programme principale
+    rs485.println("#06:00?S750");
+    while(!rs485.available());
+    Serial.println(rs485.readStringUntil('\n'));
+    delay(10);
+    // rs485.println("#07:00?S750");
+    // while(!rs485.available());
+    // Serial.println(rs485.readStringUntil('\n'));
+    // delay(10);
 }
