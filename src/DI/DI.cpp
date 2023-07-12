@@ -36,16 +36,16 @@ void DI::Command(char action) {
         read_all();
         break;
     case 1:
-        Serial.print(mcp2.readGPIO(GPIOA));
+        Serial.write(mcp2.readGPIO(GPIOA));
         break;
     case 2:
-        Serial.print(mcp2.readGPIO(GPIOB));
+        Serial.write(mcp2.readGPIO(GPIOB));
         break;
     case 3:
-        Serial.print(mcp3.readGPIO(GPIOA));
+        Serial.write(mcp3.readGPIO(GPIOA));
         break;
     case 4:
-        Serial.print(mcp3.readGPIO(GPIOB));
+        Serial.write(mcp3.readGPIO(GPIOB));
         break;
     }
 }
@@ -59,8 +59,8 @@ void DI::read_all(){
     byte portA3 = mcp3.readGPIO(GPIOA);// interlock
     byte portB3 = mcp3.readGPIO(GPIOB);
     // send all ports
-    Serial.print(portA2);
-    Serial.print(portB2);
-    Serial.print(portA3);
-    Serial.print(portB3);
+    Serial.write(portA2);
+    Serial.write(portB2);
+    Serial.write(portA3);
+    Serial.write(portB3);
 }

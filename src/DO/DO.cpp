@@ -20,6 +20,10 @@ void DO::begin(){
     mcp0.setupPortB(0, 0, 0);
     mcp1.setupPortA(0, 0x00, 0x00);
     mcp1.setupPortB(0, 0, 0);
+    mcp0.writeGPIO(GPIOA,0xFF);
+    mcp0.writeGPIO(GPIOB,0xFF);
+    mcp1.writeGPIO(GPIOA,0xFF);
+    mcp1.writeGPIO(GPIOB,0xFF);
 }
 
 /**
@@ -72,10 +76,10 @@ void DO::Command(uint8_t action){
     action = action / 2;
     switch (action)
     {
-    case 1://MCF1
+    case 1://MFC1
         writePin(Out_MCF1, state);
         break;
-    case 2://MCF2
+    case 2://MFC2
         writePin(Out_MCF2, state);
         break;
     case 3://Numpro final

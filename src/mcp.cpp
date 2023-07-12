@@ -65,7 +65,7 @@ void mcp::mcu_write(uint8_t registre, uint8_t value){
  * @return uint8_t The value of the port
  */
 uint8_t mcp::readGPIO(uint8_t port) {
-    uint8_t pin;
+    uint8_t pin = 0;
     Wire.beginTransmission(_chipAddr);
     Wire.write(port);
     Wire.endTransmission();
@@ -107,8 +107,8 @@ void mcp::writePin(uint8_t pin, bool value) {
         pin -= 8;
     }
 
-
     uint8_t current = readGPIO(port);
+    // Serial.println(current);
     if(value) {
         current |= (1 << pin);
     } else {
