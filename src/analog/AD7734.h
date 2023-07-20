@@ -17,16 +17,17 @@
 #define MODE_VALUE 0x04
 
 class AD7734 {
+    private:
+        void writeRegister(byte reg, byte value);
+        uint32_t readRegister(byte reg, byte toRead);
+        uint8_t _CS_PIN;
     public:
         AD7734(uint8_t CS_Pin);
         void configure();
         float tensionConverter(uint32_t value);
         uint32_t readAverageValue(byte channel, int sample);
         float readChannel(byte channel);
-    private:
-        void writeRegister(byte reg, byte value);
-        uint32_t readRegister(byte reg, byte toRead);
-        uint8_t _CS_PIN;
+        void Command();
 };
 
 #endif // AD7734_H

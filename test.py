@@ -21,13 +21,13 @@ def send_command(type, action):
 
 while True:
     # test = int(input("Action: "))*2
-    # for i in [1,2,3,4,5,6,7,8,9,20,14,15,16,17,26]:
-    #     test = i*2
-    #     print(test)
-    #     send_command(0,test)
-    #     time.sleep(3)
-    #     print(test+1)
-    #     send_command(0,test+1)
-    #     time.sleep(2)
-    send_command(1,0)
-    time.sleep(2)
+    for i in [5,6,7,8,9]:
+        test = i*2
+        print(test)
+        send_command(0,test)
+        time.sleep(3)
+        print(test+1)
+        send_command(0,test+1)
+        time.sleep(2)
+    # send_command(1,0)
+    # time.sleep(2)

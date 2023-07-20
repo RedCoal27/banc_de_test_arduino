@@ -61,3 +61,13 @@ float AD7734::readChannel(byte channel){
     uint32_t data = readAverageValue(channel, 4);
     return tensionConverter(data);
 }
+
+void AD7734::Command(){
+    uint8_t cmd = Serial.read();
+    if(cmd < 4){
+        Serial.println(readChannel(cmd),3);
+    }
+    else{
+        Serial.println(0);
+    }
+}

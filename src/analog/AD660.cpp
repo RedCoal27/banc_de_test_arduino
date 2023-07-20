@@ -33,3 +33,9 @@ byte AD660::voltageToLSB(float voltage) {
 void AD660::writeVoltage(float voltage) {
     sendData(voltageToMSB(voltage), voltageToLSB(voltage));
 }
+
+
+void AD660::Command() {
+    float command = Serial.parseFloat();
+    writeVoltage(command);
+}

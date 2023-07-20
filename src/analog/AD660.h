@@ -5,15 +5,17 @@
 #include <SPI.h>
 
 class AD660 {
-public:
-    AD660(uint8_t ldacPin);
-    void begin();
-    void writeVoltage(float voltage);
-private:
-    uint8_t _ldacPin;
-    void sendData(byte msb, byte lsb);
-    byte voltageToMSB(float voltage);
-    byte voltageToLSB(float voltage);
+    private:
+        uint8_t _ldacPin;
+        void sendData(byte msb, byte lsb);
+        byte voltageToMSB(float voltage);
+        byte voltageToLSB(float voltage);
+
+    public:
+        AD660(uint8_t ldacPin);
+        void begin();
+        void writeVoltage(float voltage);
+        void Command();
 };
 
 #endif //AD660_H
