@@ -58,8 +58,16 @@ uint32_t AD7734::readRegister(byte reg, byte toRead) {
 
 
 float AD7734::readChannel(byte channel){
-    uint32_t data = readAverageValue(channel, 4);
+    uint32_t data = readAverageValue(channel, 2);
     return tensionConverter(data);
+}
+
+
+
+void AD7734::readAllChannels(float* channel){
+    for(int i = 0; i < 4; i++){
+        channel[i] = readChannel(i);
+    }
 }
 
 void AD7734::Command(){
@@ -67,7 +75,13 @@ void AD7734::Command(){
     if(cmd < 4){
         Serial.println(readChannel(cmd),3);
     }
-    else{
-        Serial.println(0);
+    if (cmd == 4){
+        float channels[4];
+        readAllChannels(channels);
+        for(int i = 0; i < 4; i++){
+            Serial.print(channels[i],3);
+            Serial.print(" ");
+        }
+        Serial.println();
     }
 }

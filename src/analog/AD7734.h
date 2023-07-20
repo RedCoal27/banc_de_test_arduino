@@ -27,6 +27,7 @@ class AD7734 {
         float tensionConverter(uint32_t value);
         uint32_t readAverageValue(byte channel, int sample);
         float readChannel(byte channel);
+        void readAllChannels(float *channels);
         void Command();
 };
 
