@@ -131,8 +131,14 @@ void DO::Command(uint8_t action){
         writePin(Out_Iso_RGA_pompe, state);
         break;
 
-    case 26: //db9
+    case 26: //Pump_Start
         writePin(Out_Pump_Start,state);
+        break;
+    case 27: //RGA Pump Start
+        writePin(Out_Turbo_RGA,state);
+        break;
+    case 28: //Ch Pump Start
+        writePin(Out_Turbo_Ch,state);
         break;
     }
     // Serial.print(1);
