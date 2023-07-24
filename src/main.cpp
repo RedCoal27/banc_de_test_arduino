@@ -24,7 +24,7 @@ void setup() {
 void loop() {
     //wait for serial data
     while(Serial.available() <= 1);
-    _CMD.Command();//execute received command
+    _CMD.command();//execute received command
     Serial.flush();
 }
 

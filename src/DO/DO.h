@@ -25,5 +25,5 @@ class DO {
     public:
         DO();
         void begin();
-        void Command(uint8_t action);
+        void command(uint8_t action);
 };

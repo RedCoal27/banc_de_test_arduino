@@ -19,37 +19,45 @@ cmd::cmd(){
     };
 }
 
+
 void cmd::begin(){
     _DO.begin();
     _DI.begin();
+    for(int i=0; i < 4; i++){
+        _AO[i].begin();
+    }
+    _AI[0].configure();
+    _AI[1].configure();
 }
 
 /**
  * @brief Lit une commande depuis le port série et l'exécute
  * 
  */
-void cmd::Command(){
+void cmd::command(){
     uint8_t port = Serial.read();
     switch (port)
     {
     case 0: //DO
-        _DO.Command(Serial.read());
+        _DO.command(Serial.read());
         break;
     case 1: //DI
-        _DI.Command(Serial.read());
+        _DI.command(Serial.read());
         break;
     case 2:
     case 3:
     case 4:
     case 5: //AO
-        _AO[port - 2].Command();
+        _AO[port - 2].command();
         break;
     case 6:
     case 7: //AI
-        _AI[port - 6].Command();
+        _AI[port - 6].command();
         break;
+    case 8:
+        _RS485.read_pressure();
     default:
-        Serial.print(0);
+        Serial.print(port);
         break;
     }
 }

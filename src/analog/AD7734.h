@@ -25,10 +25,10 @@ class AD7734 {
         AD7734(uint8_t CS_Pin);
         void configure();
         float tensionConverter(uint32_t value);
-        uint32_t readAverageValue(byte channel, int sample);
+        uint32_t readValue(byte channel);
         float readChannel(byte channel);
         void readAllChannels(float *channels);
-        void Command();
+        void command();
 };
 
 #endif // AD7734_H

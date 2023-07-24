@@ -16,5 +16,5 @@ class DI {
     public:
         DI();
         void begin();
-        void Command(char action);
+        void command(char action);
 };

@@ -11,10 +11,10 @@ void AD660::begin() {
 }
 
 void AD660::sendData(byte msb, byte lsb) {
+    digitalWrite(_ldacPin, HIGH);
     SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
     SPI.transfer(msb);
     SPI.transfer(lsb);
-    digitalWrite(_ldacPin, HIGH);
     delay(0.5);
     SPI.endTransaction();
     digitalWrite(_ldacPin, LOW);
@@ -35,7 +35,12 @@ void AD660::writeVoltage(float voltage) {
 }
 
 
-void AD660::Command() {
-    float command = Serial.parseFloat();
-    writeVoltage(command);
+void AD660::command() {
+    byte buffer[4]; // tableau pour stocker les 4 octets
+    Serial.readBytes(buffer, 4); // lire 4 octets de la liaison série dans le tableau
+
+    float tension = *(float*)buffer; // utiliser un pointeur pour interpréter les octets comme un float
+
+    writeVoltage(tension);
+    
 }

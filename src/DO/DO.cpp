@@ -70,7 +70,7 @@ void DO::FourWayDouble(uint8_t pin_on, uint8_t pin_off) {
  * @note La fonction utilise les méthodes writePin et FourWayDouble pour définir l'état des broches.
  * @note La fonction imprime 1 sur le port série après l'exécution de la commande
  */
-void DO::Command(uint8_t action){
+void DO::command(uint8_t action){
     //niveau bas = 1, niveau haut = 0
     bool state = action % 2;
     action = action / 2;

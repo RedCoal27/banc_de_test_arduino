@@ -15,7 +15,7 @@ class AD660 {
         AD660(uint8_t ldacPin);
         void begin();
         void writeVoltage(float voltage);
-        void Command();
+        void command();
 };
 
 #endif //AD660_H

@@ -29,7 +29,7 @@ void DI::begin(){
  * @param action Command to execute. 0 for reading all ports, 1 for reading MCP23017 chip 2 port A, 2 for reading MCP23017 chip 2 port B,
  * 3 for reading MCP23017 chip 3 port A, and 4 for reading MCP23017 chip 3 port B.
  */
-void DI::Command(char action) {
+void DI::command(char action) {
     switch (action)
     {
     case 0:
