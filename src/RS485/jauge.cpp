@@ -1,6 +1,8 @@
 #include "RS485/jauge.h"
 
-Jauge::Jauge(SoftwareSerial* Serial_RS485, byte address):_address(address){
+Jauge::Jauge(SoftwareSerial* _RS485, byte address){
+    Serial_RS485 = _RS485;
+    _address = address;
     query = "#";
     if(address < 10){
         query += "0";
@@ -9,14 +11,24 @@ Jauge::Jauge(SoftwareSerial* Serial_RS485, byte address):_address(address){
 
 }
 void Jauge::setup(){
-    Serial_RS485->println("#00:01!C780 0");
-    Serial_RS485->println(query + "!S755" + String(PRESSURE_UNIT));
-    while(!Serial_RS485->available());
-    Serial_RS485->readStringUntil('\n');
+    send_command("!C781 0");
+    send_command("!S755" + String(PRESSURE_UNIT));
 }
 
 uint16_t Jauge::read_pressure(){
-    Serial_RS485->println(query + "?V752");
-    while(!Serial_RS485->available());
-    Serial.println(Serial_RS485->readStringUntil('\n'));
+    // Serial.print(query + "?V752\n");
+    Serial.println(send_command("?S750\n"));
+    return 1;
+}
+
+String Jauge::send_command(String command){
+    Serial_RS485->print(query + command);
+    uint16_t x;
+    while(!Serial_RS485->available() && x<1000){
+        x++;
+        delay(0.01);
+    }
+    if(x<1000)
+        return(Serial_RS485->readStringUntil('\n'));
+    return "err";
 }

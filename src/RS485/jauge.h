@@ -13,4 +13,5 @@ class Jauge {
         Jauge(SoftwareSerial* Serial_RS485, byte address);
         void setup();
         uint16_t read_pressure();
+        String send_command(String command);
 };

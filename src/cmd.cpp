@@ -28,6 +28,8 @@ void cmd::begin(){
     }
     _AI[0].configure();
     _AI[1].configure();
+
+    _RS485.setup();
 }
 
 /**

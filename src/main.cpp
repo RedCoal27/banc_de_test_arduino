@@ -17,6 +17,7 @@ cmd _CMD; //classe commande
 
 void setup() {
     Serial.begin(115200);
+    Serial.setTimeout(100);
     Wire.begin();
     _CMD.begin();
 }
