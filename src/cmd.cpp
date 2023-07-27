@@ -57,7 +57,8 @@ void cmd::command(){
         _AI[port - 6].command();
         break;
     case 8:
-        _RS485.read_pressure();
+        _RS485.read_pressure(Serial.read());
+        break;
     default:
         Serial.print(port);
         break;

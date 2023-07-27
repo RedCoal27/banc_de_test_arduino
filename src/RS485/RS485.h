@@ -13,10 +13,9 @@
 class RS485 {
     private:
         SoftwareSerial Serial_RS485;
-        Jauge _Jauge1;
-        Jauge _Jauge2;  
+        Jauge _Jauge;
     public:
         RS485();
         void setup();
-        void read_pressure();
+        void read_pressure(char address);
 };

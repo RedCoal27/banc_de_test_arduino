@@ -48,12 +48,12 @@
 
 // void loop()
 // {
-//     rs485.println("#06:00?S750");
-//     while(!rs485.available());
-//     Serial.println(rs485.readStringUntil('\n'));
-//     delay(10);
-//     // rs485.println("#07:00?S750");
+//     // rs485.println("#06:00?S750");
 //     // while(!rs485.available());
 //     // Serial.println(rs485.readStringUntil('\n'));
 //     // delay(10);
+//     rs485.println("#07:00?S750");
+//     while(!rs485.available());
+//     Serial.println(rs485.readStringUntil('\n'));
+//     delay(10);
 // }

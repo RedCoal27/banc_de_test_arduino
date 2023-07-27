@@ -7,11 +7,8 @@
 class Jauge {
     private:
         SoftwareSerial* Serial_RS485;
-        byte _address;
-        String query;
+        String query(uint8_t address);
     public:
-        Jauge(SoftwareSerial* Serial_RS485, byte address);
-        void setup();
-        uint16_t read_pressure();
-        String send_command(String command);
+        Jauge(SoftwareSerial* Serial_RS485);
+        String send_command(uint8_t address, String command);
 };
