@@ -53,6 +53,7 @@ void DI::command(char action) {
 
 
 void DI::read_all(){
+    // delay(0.1); //tempo to avoid bug where it doesn't read all ports correctly
     // read all ports
     byte portA2 = mcp2.readGPIO(GPIOA);
     byte portB2 = mcp2.readGPIO(GPIOB);
