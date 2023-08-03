@@ -28,7 +28,7 @@ uint32_t AD7734::readValue(byte channel){
 }
 
 void AD7734::writeRegister(byte reg, byte value) {
-    SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
     digitalWrite(_CS_PIN, LOW);
     SPI.transfer(reg);
     SPI.transfer(value);
@@ -37,7 +37,7 @@ void AD7734::writeRegister(byte reg, byte value) {
 }
 
 uint32_t AD7734::readRegister(byte reg, byte toRead) {
-    SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
     digitalWrite(_CS_PIN, LOW);
     SPI.transfer(reg | 64);
     uint32_t value = 0;

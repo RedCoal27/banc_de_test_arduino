@@ -8,14 +8,14 @@ void AD660::begin() {
     SPI.begin();
     pinMode(_ldacPin, OUTPUT);
     digitalWrite(_ldacPin, LOW);
+    writeVoltage(0);
 }
 
 void AD660::sendData(byte msb, byte lsb) {
     digitalWrite(_ldacPin, HIGH);
-    SPI.beginTransaction(SPISettings(100000, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(200000, MSBFIRST, SPI_MODE0));
     SPI.transfer(msb);
     SPI.transfer(lsb);
-    delay(0.5);
     SPI.endTransaction();
     digitalWrite(_ldacPin, LOW);
 }
