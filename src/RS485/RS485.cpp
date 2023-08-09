@@ -1,7 +1,7 @@
 #include "RS485/RS485.h"
 
 RS485::RS485():Serial_RS485(RX_PIN, TX_PIN),_Jauge(&Serial_RS485){
-    Serial_RS485.begin(38400);
+    Serial_RS485.begin(9600);
     Serial_RS485.setTimeout(120);
 }
 
