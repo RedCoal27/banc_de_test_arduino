@@ -140,6 +140,18 @@ void DO::command(uint8_t action){
     case 28: //Ch Pump Start
         writePin(Out_Turbo_Ch,state);
         break;
+    case 29: //generator 1 enable/disable
+        writePin(Out_Generator_enable_1,state);
+        break;
+    case 30: //generator 1 interlock
+        writePin(Out_Generator_Interlock_1,state);
+        break;
+    case 31: //generator 2 enable/disable
+        writePin(Out_Generator_enable_2,state);
+        break;
+    case 32: //generator 2 interlock
+        writePin(Out_Generator_Interlock_2,state);
+        break;
     }
     // Serial.print(1);
 }

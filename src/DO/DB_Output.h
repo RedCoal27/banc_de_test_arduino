@@ -79,10 +79,10 @@
 //DB15
 #define Out_Turbo_RGA (MCP_A1 | 16) //DB15_2 - DB15_10
 #define Out_Turbo_Ch (MCP_A2 | 16)  //DB15_3 - DB15_11
-#define Out_DB15_4_12 (MCP_A3 | 16) //DB15_4 - DB15_12 (Non utilisé)
-#define Out_DB15_5_13 (MCP_A4 | 16) //DB15_5 - DB15_13 (Non utilisé)
-#define Out_DB15_6_14 (MCP_A5 | 16) //DB15_6 - DB15_14 (Non utilisé)
-#define Out_DB15_7_15 (MCP_A6 | 16) //DB15_7 - DB15_15 (Non utilisé)
+#define Out_Generator_enable_1 (MCP_A3 | 16) //DB15_4 - DB15_12
+#define Out_Generator_Interlock_1 (MCP_A4 | 16) //DB15_5 - DB15_13
+#define Out_Generator_enable_2 (MCP_A5 | 16) //DB15_6 - DB15_14
+#define Out_Generator_Interlock_2 (MCP_A6 | 16) //DB15_7 - DB15_15 (Non utilisé)
 #define Out_DB15_8 (MCP_A7 | 16)    //DB15_8 (Ground) (Non utilisé)
 
 #define Out_Pump_Start (MCP_A0 | 16)//DB15_9 - DB15_1 (24V)
