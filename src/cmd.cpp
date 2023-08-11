@@ -4,7 +4,7 @@
  * @brief Constructeur de l'objet cmd
  * 
  */
-cmd::cmd(){
+cmd::cmd():_THROTTLEVALVE(ADDRESS_THROTTLE){
     //4 analog output
     _AO = new AD660[4]{
         AD660(8),
@@ -59,6 +59,8 @@ void cmd::command(){
     case 8:
         _RS485.read_pressure(Serial.read());
         break;
+    case 9:
+        _THROTTLEVALVE.command(Serial.read());
     default:
         Serial.print(port);
         break;
