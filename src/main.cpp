@@ -7,7 +7,7 @@
 
 cmd _CMD; //classe commande
 
-ThrottleValve test(ADDRESS_THROTTLE);
+// ThrottleValve test(ADDRESS_THROTTLE);
 
 // //fonction interuption
 // void interlock(){
