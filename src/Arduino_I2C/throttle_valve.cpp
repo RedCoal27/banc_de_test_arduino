@@ -43,11 +43,14 @@ void ThrottleValve::command(uint8_t action){
         byte buffer[2]; // tableau pour stocker les 2 octets
         Serial.readBytes(buffer, 2); // lire 2 octets de la liaison série dans le tableau
         uint16_t new_position = *(uint16_t*)buffer; // utiliser un pointeur pour interpréter les octets comme un uint8_t
+        Serial.println(new_position);
         set_position(new_position);
         break;
     }
     case 2:{
-        Serial.println(get_position());
+        int pos = get_position();
+        Serial.write(pos>>8);
+        Serial.write(pos);
         break;
     }
     case 3:{
