@@ -61,6 +61,7 @@ void cmd::command(){
         break;
     case 9:
         _THROTTLEVALVE.command(Serial.read());
+        break;
     default:
         Serial.print(port);
         break;

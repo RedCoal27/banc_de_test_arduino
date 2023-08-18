@@ -3,7 +3,7 @@
 
 #include <cmd.h>
 
-#include "Arduino_I2C/throttle_valve.h"
+
 
 cmd _CMD; //classe commande
 
@@ -23,7 +23,7 @@ void setup() {
     Serial.begin(115200);
     Serial.setTimeout(100);
     Wire.begin();
-    // _CMD.begin();
+    _CMD.begin();
     delay(3000);
 }
 
