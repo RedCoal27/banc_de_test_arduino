@@ -44,19 +44,21 @@ int ThrottleValve::get_tension(uint8_t channel){
     return read(TENSION + channel);
 }
 
-void ThrottleValve::command(uint8_t action){
-    switch (action)
-    {
+void ThrottleValve::command(uint8_t action) {
+    uint16_t new_position = 0; // Déclarer et initialiser les variables en dehors du switch
+    int pos = 0;
+
+    switch (action) {
     case 0:
-        byte buffer[2]; // tableau pour stocker les 2 octets
-        Serial.readBytes(buffer, 2); // lire 2 octets de la liaison série dans le tableau
-        uint16_t new_position = *(uint16_t*)buffer; // utiliser un pointeur pour interpréter les octets comme un uint8_t
+        byte buffer[2];
+        Serial.readBytes(buffer, 2);
+        new_position = *(uint16_t*)buffer;
         Serial.println(new_position);
         set_position(new_position);
         break;
     case 1:
-        int pos = get_position();
-        Serial.write(pos>>8);
+        pos = get_position();
+        Serial.write(pos >> 8);
         Serial.write(pos);
         break;
     case 2:
@@ -64,6 +66,7 @@ void ThrottleValve::command(uint8_t action){
         break;
     case 3:
         Serial.write(get_delta_home());
+        break;
     case 4:
     case 5:
     case 6:

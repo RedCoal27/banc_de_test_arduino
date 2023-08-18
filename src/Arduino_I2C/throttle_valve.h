@@ -4,8 +4,8 @@
 
 #define ADDRESS_THROTTLE 0x01
 
-#define SENSORS 0x01 //sensore register
-#define POSITION 0x02    //position register
+#define POSITION 0x01    //position register
+#define SENSORS 0x02 //sensore register
 #define DELTA_HOME 0x03 //delta home register
 #define TENSION 0x04 //tension goes from 0x04 to 0x07
 
