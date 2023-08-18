@@ -53,7 +53,6 @@ void ThrottleValve::command(uint8_t action) {
         byte buffer[2];
         Serial.readBytes(buffer, 2);
         new_position = *(uint16_t*)buffer;
-        Serial.println(new_position);
         set_position(new_position);
         break;
     case 1:
